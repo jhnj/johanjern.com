@@ -1,7 +1,7 @@
 import "../styles/global.css";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import * as gtag from "../lib/gtag";
+import { pageview } from "../lib/gtag";
 
 import Head from "next/head";
 import { AppProps } from "next/app";
@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = (url: string) => {
-      gtag.pageview(url);
+      pageview(url);
     };
     router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
