@@ -1,33 +1,35 @@
-import Layout from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
-import { IPost, getPostData, getAllPostIds } from '../lib/posts'
-import Link from 'next/link'
-import DisplayDate from '../components/date'
-import { GetStaticProps } from 'next'
-import fs from 'fs'
-import { promisify } from 'util'
-import renderToString from 'next-mdx-remote/render-to-string'
-import hydrate from 'next-mdx-remote/hydrate'
-import Image from 'next/image'
-import ExternalLink from '../lib/externalLink'
-import Head from 'next/head'
-import { siteTitle } from './_app'
+import Layout from "../components/layout";
+import utilStyles from "../styles/utils.module.css";
+import { IPost, getPostData, getAllPostIds } from "../lib/posts";
+import Link from "next/link";
+import DisplayDate from "../components/date";
+import { GetStaticProps } from "next";
+import fs from "fs";
+import { promisify } from "util";
+import renderToString from "next-mdx-remote/render-to-string";
+import Image from "next/image";
+import ExternalLink from "../lib/externalLink";
+import Head from "next/head";
+import { siteTitle } from "./_app";
 
-const components = { Image, a: ExternalLink }
+const components = { a: ExternalLink };
 
-export default function Home({
-  posts,
-  intro
-}: {
-  posts: IPost[]
-  intro: string
-}) {
-  const content = hydrate(intro, {
-    components
-  })
+export default function Home({ posts, intro }: { posts: IPost[]; intro: any }) {
   return (
     <Layout home>
-      {content}
+      <Image
+        loading="eager"
+        priority={true}
+        quality={70}
+        src="/images/johan.jpg"
+        width="480px"
+        height="428"
+      />
+
+      <div
+        className="wrapper"
+        dangerouslySetInnerHTML={{ __html: intro.renderedOutput }}
+      />
 
       {posts.length > 0 && (
         <section className={utilStyles.padding1px}>
@@ -48,22 +50,22 @@ export default function Home({
         </section>
       )}
     </Layout>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await Promise.all((await getAllPostIds()).map(getPostData))
-  const raw = await promisify(fs.readFile)('./pages/intro.mdx')
+  const posts = await Promise.all((await getAllPostIds()).map(getPostData));
+  const raw = await promisify(fs.readFile)("./pages/intro.mdx");
   const intro = await renderToString(raw.toString(), {
-    components
-  })
+    components,
+  });
   return {
     props: {
-      posts: posts.filter(p => !p.draft),
-      intro
-    }
-  }
-}
+      posts: posts.filter((p) => !p.draft),
+      intro,
+    },
+  };
+};
 
 function PageHead() {
   return (
@@ -74,10 +76,10 @@ function PageHead() {
       />
       <meta
         property="og:image"
-        content={'https://johanjern.com/images/johan.jpg'}
+        content={"https://johanjern.com/images/johan.jpg"}
       />
       <meta name="og:title" content={siteTitle} />
       <meta name="twitter:card" content="summary" />
     </Head>
-  )
+  );
 }
