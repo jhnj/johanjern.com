@@ -1,24 +1,20 @@
-import styles from './layout.module.css'
-import Link from 'next/link'
+import styles from "./layout.module.css";
+import Link from "next/link";
 
 export default function Layout({
   children,
-  home
+  home,
 }: {
-  children: React.ReactNode
-  home?: boolean
+  children: React.ReactNode;
+  home?: boolean;
 }) {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <h3 className={styles.headerTitle}>
-          <a
-            href="{{ site.baseurl }}/"
-            title="Home"
-            className={styles.headerTitleA}
-          >
+          <a href="/" title="Home" className={styles.headerTitleA}>
             Johan Jern
-          </a>{' '}
+          </a>{" "}
           <small className={styles.headerTitleSmall}>Software Engineer</small>
         </h3>
       </header>
@@ -31,5 +27,5 @@ export default function Layout({
         </div>
       )}
     </div>
-  )
+  );
 }
