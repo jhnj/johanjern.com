@@ -16,40 +16,43 @@ const components = { a: ExternalLink };
 
 export default function Home({ posts, intro }: { posts: IPost[]; intro: any }) {
   return (
-    <Layout home>
-      <Image
-        loading="eager"
-        priority={true}
-        quality={70}
-        src="/images/johan.jpg"
-        width="480px"
-        height="428"
-      />
+    <>
+      <PageHead />
+      <Layout home>
+        <Image
+          loading="eager"
+          priority={true}
+          quality={70}
+          src="/images/johan.jpg"
+          width="480px"
+          height="428"
+        />
 
-      <div
-        className="wrapper"
-        dangerouslySetInnerHTML={{ __html: intro.renderedOutput }}
-      />
+        <div
+          className="wrapper"
+          dangerouslySetInnerHTML={{ __html: intro.renderedOutput }}
+        />
 
-      {posts.length > 0 && (
-        <section className={utilStyles.padding1px}>
-          <h2>Writing</h2>
-          <ul className={utilStyles.list}>
-            {posts.map(({ id, date, title }) => (
-              <li className={utilStyles.listItem} key={id}>
-                <Link href={`/posts/${id}`}>
-                  <a>{title}</a>
-                </Link>
-                <br />
-                <small className={utilStyles.lightText}>
-                  <DisplayDate dateString={date} />
-                </small>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-    </Layout>
+        {posts.length > 0 && (
+          <section className={utilStyles.padding1px}>
+            <h2>Writing</h2>
+            <ul className={utilStyles.list}>
+              {posts.map(({ id, date, title }) => (
+                <li className={utilStyles.listItem} key={id}>
+                  <Link href={`/posts/${id}`}>
+                    <a>{title}</a>
+                  </Link>
+                  <br />
+                  <small className={utilStyles.lightText}>
+                    <DisplayDate dateString={date} />
+                  </small>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </Layout>
+    </>
   );
 }
 
@@ -78,7 +81,7 @@ function PageHead() {
     <Head>
       <meta
         name="description"
-        content="Hi I'm Johan. I like to working with smart people and solving hard problems."
+        content="Hi I'm Johan. I like working with smart people and solving hard problems."
       />
       <meta
         property="og:image"
