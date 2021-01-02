@@ -54,14 +54,20 @@ export default function Home({ posts, intro }: { posts: IPost[]; intro: any }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await Promise.all((await getAllPostIds()).map(getPostData));
+  const allPosts = await Promise.all((await getAllPostIds()).map(getPostData));
+  const posts = allPosts.filter(
+    (p) => !(process.env.NODE_ENV === "production" && !!p.draft)
+  );
+  posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   const raw = await promisify(fs.readFile)("./pages/intro.mdx");
   const intro = await renderToString(raw.toString(), {
     components,
   });
   return {
     props: {
-      posts: posts.filter((p) => !p.draft),
+      posts: posts.filter(
+        (p) => !(process.env.NODE_ENV === "production" && !!p.draft)
+      ),
       intro,
     },
   };

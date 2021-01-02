@@ -1,62 +1,65 @@
-import Layout from '../../components/layout'
-import { IPost, getAllPostIds, getPostData } from '../../lib/posts'
-import Head from 'next/head'
-import DisplayDate from '../../components/date'
-import utilStyles from '../../styles/utils.module.css'
-import { GetStaticPaths } from 'next'
-import renderToString from 'next-mdx-remote/render-to-string'
-import hydrate from 'next-mdx-remote/hydrate'
-import ExternalLink from '../../lib/externalLink'
-import Image from 'next/image'
-import rehypePrism from '@mapbox/rehype-prism'
+import Layout from "../../components/layout";
+import { IPost, getAllPostIds, getPostData } from "../../lib/posts";
+import Head from "next/head";
+import DisplayDate from "../../components/date";
+import utilStyles from "../../styles/utils.module.css";
+import { GetStaticPaths } from "next";
+import renderToString from "next-mdx-remote/render-to-string";
+import hydrate from "next-mdx-remote/hydrate";
+import ExternalLink from "../../lib/externalLink";
+import Image from "next/image";
+import rehypePrism from "@mapbox/rehype-prism";
 
-const components = { Image, a: ExternalLink }
+const components = { Image, a: ExternalLink };
 
 export default function Post({
   source,
-  data
+  data,
 }: {
-  source: string
-  data: IPost
+  source: string;
+  data: IPost;
 }) {
-  const content = hydrate(source, { components })
+  const content = hydrate(source, { components });
   return (
     <Layout>
       <PostHead data={data} />
       <article>
-        <h1>{data.title}</h1>
+        <h1>
+          {data.title}
+          {data.draft && <b> -- DRAFT!</b>}
+        </h1>
         <div className={`${utilStyles.lightText} ${utilStyles.margin1rem}`}>
           <DisplayDate dateString={data.date} />
         </div>
         <div>{content}</div>
       </article>
     </Layout>
-  )
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const ids = await getAllPostIds()
-  console.log(ids)
+  const ids = await getAllPostIds();
+  console.log(ids);
 
   return {
-    paths: ids.map(id => ({
+    paths: ids.map((id) => ({
       params: {
-        id
-      }
+        id,
+      },
     })),
-    fallback: false
-  }
-}
+    fallback: false,
+  };
+};
 
 export async function getStaticProps({ params }) {
-  const postID = params.id as string
-  const data = await getPostData(postID)
+  const postID = params.id as string;
+  const data = await getPostData(postID);
 
   const mdxSource = await renderToString(data.source, {
     components,
-    mdxOptions: { rehypePlugins: [rehypePrism] }
-  })
-  return { props: { data, source: mdxSource } }
+    mdxOptions: { rehypePlugins: [rehypePrism] },
+  });
+  return { props: { data, source: mdxSource } };
 }
 
 function PostHead({ data }: { data: IPost }) {
@@ -95,9 +98,9 @@ function PostHead({ data }: { data: IPost }) {
       {/* TODO: post thumbnails */}
       <meta
         property="og:image"
-        content={'https://johanjern.com/images/johan.jpg'}
+        content={"https://johanjern.com/images/johan.jpg"}
       />
       <meta name="twitter:card" content="summary" />
     </Head>
-  )
+  );
 }
