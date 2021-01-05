@@ -1,16 +1,17 @@
 import Layout from "../../components/layout";
 import { IPost, getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
-import DisplayDate from "../../components/date";
+import DisplayDate from "../../components/DisplayDate";
 import utilStyles from "../../styles/utils.module.css";
 import { GetStaticPaths } from "next";
 import renderToString from "next-mdx-remote/render-to-string";
 import hydrate from "next-mdx-remote/hydrate";
-import ExternalLink from "../../lib/externalLink";
+import ExternalLink from "../../components/ExternalLink";
+import WithCaption from "../../components/WithCaption";
 import Image from "next/image";
 import rehypePrism from "@mapbox/rehype-prism";
 
-const components = { Image, a: ExternalLink };
+const components = { Image, WithCaption, a: ExternalLink };
 
 export default function Post({
   source,
