@@ -9,7 +9,7 @@ export default function Layout({
   home?: boolean;
 }) {
   return (
-    <div className={styles.container}>
+    <div className={home ? styles.container : styles.postContainer}>
       <header className={styles.header}>
         <h3 className={styles.headerTitle}>
           <a href="/" title="Home" className={styles.headerTitleA}>

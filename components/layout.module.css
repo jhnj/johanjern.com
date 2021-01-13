@@ -4,6 +4,12 @@
   margin: 0 auto 6rem;
 }
 
+.postContainer {
+  max-width: 42rem;
+  padding: 0 1rem;
+  margin: 0 auto 6rem;
+}
+
 .header {
   padding-top: 1rem;
   padding-bottom: 1rem;

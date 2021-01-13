@@ -11,7 +11,7 @@ import WithCaption from "../../components/WithCaption";
 import Image from "next/image";
 import rehypePrism from "@mapbox/rehype-prism";
 
-const components = { Image, WithCaption, a: ExternalLink };
+const components = { Image, WithCaption, a: ExternalLink, Todo };
 
 export default function Post({
   source,
@@ -104,4 +104,8 @@ function PostHead({ data }: { data: IPost }) {
       <meta name="twitter:card" content="summary" />
     </Head>
   );
+}
+
+function Todo() {
+  return <b style={{ color: "red" }}>TODO: </b>;
 }
