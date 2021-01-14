@@ -5,10 +5,14 @@ draft: true
 ---
 
 In September last year (2020) I started working remotely at [Pipe](https://pipe.com), a
-Fintech startup that's helping Saas companies grow dilution-free. During the
+Fintech startup that's helping SaaS companies grow dilution-free. During the
 holidays I spent some time reflecting on how my first 3 months have been and
 decided to do a writeup on how/why I ended up at Pipe, how it's been, and what
-I've learned thus far.
+I've learned. Notable is that I’ve been working remotely from Finland while the
+rest of the team is spread around the US. In this post I’ll focus on the remote
+part and write about a couple of areas that have been important for my success
+at Pipe and where I think we’ve done a good job - asynchronous communication,
+meetings, infrastructure and the team. 
 
 ## Background
 
@@ -26,7 +30,7 @@ consecutive company I've worked at has been larger than the last (ending up
 with a stint at [BCG](https://www.bcg.com/) with 21k employees). Still, at some
 point I realized that I kind of miss the fast pace of a startup, the
 responsibility you get (or have) to take and the impact you can have. So after
-some contemplation I was pretty sure that joining a startup was what I wanted
+some contemplation, I was pretty sure that joining a startup was what I wanted
 to do. I was also looking at Fintech companies as ever since learning about (and
 interning at) [Stripe](https://stripe.com) a couple of years ago I'd been
 excited about the field.
@@ -81,8 +85,8 @@ into account everyone's opinion.
 
 One final advantage of how we communicate at Pipe is that it's often more
 predictable. This is something I feel applies especially to me as I'm in a
-different timezone. If I've written a design doc, PR,or something else I'm
-waiting for a response to I can be pretty certain of when I'll have a response
+different timezone. If I've written a design doc, PR, or something else I'm
+waiting for a response to, I can be pretty certain of when I'll have a response
 to react to. As long as I finish
 something before I stop working in the evening, I'll have a
 response to it waiting for me the next morning. This makes
@@ -112,14 +116,14 @@ need to work after dinner. I've also already got all important "deep" work done 
 the day so it's a good way to wrap up.
 
 Because of the small number of meetings, most of the time I spend on Zoom/Discord is
-talking to other team-members one-on-one. Some of this is technical or product
+talking to other team members one-on-one. Some of this is technical or product
 discussions but most of it is informal - catching up on things outside
 of work, trying to pitch the Nordics ([we're the happiest in the
 world after all](https://en.wikipedia.org/wiki/World_Happiness_Report#2020_report)) or
 just discussing what we'll do once travelling is allowed again. Because our
 team is still relatively small it's possible for me to have these calls with
-everyone (on the engineering team at least) - something that I find important and makes
-me feel like part of the team even though I'm on the other side of the
+everyone (on the engineering team at least) - something that I find important as it makes
+me feel like part of the team, even though I'm on the other side of the
 Atlantic. I often take these calls while going for a walk outside or for a
 bike-ride in [Zwift](https://www.zwift.com/).
 
@@ -140,7 +144,7 @@ important.
 
 During my first three months at Pipe there's been a lot of _moving fast_ but
 surprisingly little [_breaking things_](https://boz.com/articles/move-fast-explained).
-At this point I can confidently say that it's no coincidence - the quality of engineering at Pipe is just good.
+At this point I can confidently say that it's no coincidence - the quality of engineering at Pipe is just really good.
 We've got good logging, monitoring, deployments, test coverage, code quality, etc. - things you'd
 expect at a more established company, not at a startup (of course we're not
 quite there yet, but improving every day).
@@ -154,7 +158,7 @@ day my productivity would suffer. Because everything _just works_ I don't need
 to bunch all of my deploys together at the end of the day when the rest of the
 team gets online.
 
-There's no silver bullet to this, just choosing the right stack won't solve all
+There's no silver bullet to this, e.g. just choosing the right stack won't solve all
 of your problems here (although it can make it easier). In my opinion the most
 important thing that makes it work at Pipe is us caring - when something is broken we fix it, when some
 process is bad we improve it, and so on. Everyone in our team takes
@@ -178,7 +182,7 @@ just once but it's easy to let it become a habit. It can also be hard for the
 lone employee to speak up - no-one wants to feel like they're being a nuisance.
 
 Avoiding these types of situations requires an explicit commitment from the
-team to accommodate everyone. At Pipe this has worked well for me thus far, I
+team to accommodate everyone. At Pipe this has worked well for me thus far; I
 haven't felt like I've been left out just because I'm in Helsinki. Sometimes
 I've even felt like I've had to remind the team that some meetings in the
 evenings are okay (due to covid I haven't been going out much so my evenings
@@ -189,8 +193,7 @@ If you know everyone you're working with at a personal level it's easier to
 feel empathy for them and their situation - and thus also accommodate for their
 needs.
 
-
-### Challenges 
+### Challenges
 
 Remote work is not necessarily for everyone. There's less social interaction
 and there's no-one watching over you making sure you're doing what you're
@@ -208,16 +211,25 @@ the freedom of being able to choose when and how I work, being able to focus
 without the distractions of a busy office and being able to e.g. go for a
 bike-ride or go swimming in the middle of the day.
 
-### Conclusion
+## Conclusion
 
-To sum it up: there are some challenges with working with a team distributed
-over multiple time-zones - however, with the right team and with the right
-processes in place all of the challenges can be overcome. I've enjoyed working
-at Pipe and have learned a lot. If you're in a similar situation that I was in
-a couple of months ago, thinking about joining a startup/remote company, my
-suggestion is: go for it! If nothing else it's an interesting challenge and
-you'll learn a lot.
+During my first 3 months at Pipe we've constantly been thinking about and
+improving our ways of working.  If you're currently working on a remote team,
+even if it's just temporary due to covid, I'd encourage you to do the same. The
+topics I've talked about in this post can work as a starting point:
 
-If you have questions or comments feel free to reach out to me on Twitter or
-Email me. If you find any mistakes in the text you can submit a PR on
-[Github](https://github.com/jhnj/johanjern.com/blob/main/posts/working-at-pipe.md).
+- Asynchronous communication as the default.
+- Avoiding excessive meetings.
+- Good infrastructure.
+- Supportive and aligned team.
+
+My suggestion might not be applicable in all situations (especially for
+non-engineering teams) but the best way to figure that out is by trying. A lot
+of best practices for remote teams can actually be useful for co-located teams
+working from an office as well - so even if you're planning to be back in the
+office soon it pays off to optimize how your team collaborates remotely now.
+
+And for those of you who are thinking about joining a remote team, like I was a
+couple of months ago: there's both upsides and downsides to remote work, but
+for me the upsides have easily outweighed the downsides. So if you have the
+opportunity to work with a good team on a good product - go for it!

@@ -32,7 +32,22 @@ export default function Post({
         <div className={`${utilStyles.lightText} ${utilStyles.margin1rem}`}>
           <DisplayDate dateString={data.date} />
         </div>
-        <div>{content}</div>
+        {content}
+        <div style={{ borderTop: "1px solid", paddingTop: "10px" }} />
+        Thanks for reading! If you have questions or comments feel free to reach
+        out to me on{" "}
+        <ExternalLink href="https://twitter.com/JernJohan">
+          Twitter
+        </ExternalLink>{" "}
+        or via{" "}
+        <ExternalLink href="mailto:contact@johanjern.com">Email</ExternalLink>.
+        If you find any mistakes in the text you can submit a PR to fix them on{" "}
+        <ExternalLink
+          href={`https://github.com/jhnj/johanjern.com/blob/main/posts/${data.id}.md`}
+        >
+          Github
+        </ExternalLink>
+        .
       </article>
     </Layout>
   );
