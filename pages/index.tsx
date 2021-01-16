@@ -2,13 +2,13 @@ import Layout from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import { IPost, getPostData, getAllPostIds } from "../lib/posts";
 import Link from "next/link";
-import DisplayDate from "../components/date";
+import DisplayDate from "../components/DisplayDate";
 import { GetStaticProps } from "next";
 import fs from "fs";
 import { promisify } from "util";
 import renderToString from "next-mdx-remote/render-to-string";
 import Image from "next/image";
-import ExternalLink from "../lib/externalLink";
+import ExternalLink from "../components/ExternalLink";
 import Head from "next/head";
 import { siteTitle } from "./_app";
 

@@ -1,16 +1,17 @@
 import Layout from "../../components/layout";
 import { IPost, getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
-import DisplayDate from "../../components/date";
+import DisplayDate from "../../components/DisplayDate";
 import utilStyles from "../../styles/utils.module.css";
 import { GetStaticPaths } from "next";
 import renderToString from "next-mdx-remote/render-to-string";
 import hydrate from "next-mdx-remote/hydrate";
-import ExternalLink from "../../lib/externalLink";
+import ExternalLink from "../../components/ExternalLink";
+import WithCaption from "../../components/WithCaption";
 import Image from "next/image";
 import rehypePrism from "@mapbox/rehype-prism";
 
-const components = { Image, a: ExternalLink };
+const components = { Image, WithCaption, a: ExternalLink, Todo };
 
 export default function Post({
   source,
@@ -31,7 +32,22 @@ export default function Post({
         <div className={`${utilStyles.lightText} ${utilStyles.margin1rem}`}>
           <DisplayDate dateString={data.date} />
         </div>
-        <div>{content}</div>
+        {content}
+        <div style={{ borderTop: "1px solid", paddingTop: "10px" }} />
+        Thanks for reading! If you have questions or comments feel free to reach
+        out to me on{" "}
+        <ExternalLink href="https://twitter.com/JernJohan">
+          Twitter
+        </ExternalLink>{" "}
+        or via{" "}
+        <ExternalLink href="mailto:contact@johanjern.com">Email</ExternalLink>.
+        If you find any mistakes in the text you can submit a PR to fix them on{" "}
+        <ExternalLink
+          href={`https://github.com/jhnj/johanjern.com/blob/main/posts/${data.id}.md`}
+        >
+          Github
+        </ExternalLink>
+        .
       </article>
     </Layout>
   );
@@ -39,7 +55,6 @@ export default function Post({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const ids = await getAllPostIds();
-  console.log(ids);
 
   return {
     paths: ids.map((id) => ({
@@ -103,4 +118,8 @@ function PostHead({ data }: { data: IPost }) {
       <meta name="twitter:card" content="summary" />
     </Head>
   );
+}
+
+function Todo() {
+  return <b style={{ color: "red" }}>TODO: </b>;
 }
