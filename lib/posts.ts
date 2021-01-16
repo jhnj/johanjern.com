@@ -34,7 +34,7 @@ export async function getPostData(id: string): Promise<IPost> {
     title: data.title,
     date: data.date,
     source: content,
-    draft: data.draft
+    draft: !!data.draft
   }
 }
 

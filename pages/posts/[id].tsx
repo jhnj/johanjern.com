@@ -55,7 +55,6 @@ export default function Post({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const ids = await getAllPostIds();
-  console.log(ids);
 
   return {
     paths: ids.map((id) => ({
