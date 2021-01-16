@@ -131,7 +131,7 @@ bike-ride in [Zwift](https://www.zwift.com/).
 <WithCaption caption="Informal calls are a good opportunity to go for a walk or
 exercise. Shown here: fall/winter weather in Helsinki and a virtual redwood forest in
 Zwift">
-  <Image src="/images/drumso3.jpg" width="250px" height="300px" />
+  <Image src="/images/drumso.jpg" width="250px" height="300px" />
   <Image src="/images/zwift.jpg" width="250px" height="300px" />
 </WithCaption>
 
