@@ -6,7 +6,8 @@ import DisplayDate from "../components/DisplayDate";
 import { GetStaticProps } from "next";
 import fs from "fs";
 import { promisify } from "util";
-import renderToString from "next-mdx-remote/render-to-string";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Image from "next/image";
 import ExternalLink from "../components/ExternalLink";
 import Head from "next/head";
@@ -14,7 +15,13 @@ import { siteTitle } from "./_app";
 
 const components = { a: ExternalLink };
 
-export default function Home({ posts, intro }: { posts: IPost[]; intro: any }) {
+export default function Home({
+  posts,
+  intro,
+}: {
+  posts: IPost[];
+  intro: MDXRemoteSerializeResult;
+}) {
   return (
     <>
       <PageHead />
@@ -24,14 +31,12 @@ export default function Home({ posts, intro }: { posts: IPost[]; intro: any }) {
           priority={true}
           quality={70}
           src="/images/johan.jpg"
-          width="480px"
+          width="480"
           height="428"
+          alt="me"
         />
 
-        <div
-          className="wrapper"
-          dangerouslySetInnerHTML={{ __html: intro.renderedOutput }}
-        />
+        <MDXRemote {...intro} components={components} />
 
         {posts.length > 0 && (
           <section className={utilStyles.padding1px}>
@@ -39,9 +44,7 @@ export default function Home({ posts, intro }: { posts: IPost[]; intro: any }) {
             <ul className={utilStyles.list}>
               {posts.map(({ id, date, title }) => (
                 <li className={utilStyles.listItem} key={id}>
-                  <Link href={`/posts/${id}`}>
-                    <a>{title}</a>
-                  </Link>
+                  <Link href={`/posts/${id}`}>{title}</Link>
                   <br />
                   <small className={utilStyles.lightText}>
                     <DisplayDate dateString={date} />
@@ -62,10 +65,10 @@ export const getStaticProps: GetStaticProps = async () => {
     (p) => !(process.env.NODE_ENV === "production" && !!p.draft)
   );
   posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  const raw = await promisify(fs.readFile)("./pages/intro.mdx");
-  const intro = await renderToString(raw.toString(), {
-    components,
-  });
+
+  const rawIntro = await promisify(fs.readFile)("./pages/intro.mdx");
+  const intro = await serialize(rawIntro.toString());
+
   return {
     props: {
       posts: posts.filter(
