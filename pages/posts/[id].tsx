@@ -4,12 +4,13 @@ import Head from "next/head";
 import DisplayDate from "../../components/DisplayDate";
 import utilStyles from "../../styles/utils.module.css";
 import { GetStaticPaths } from "next";
-import renderToString from "next-mdx-remote/render-to-string";
-import hydrate from "next-mdx-remote/hydrate";
 import ExternalLink from "../../components/ExternalLink";
 import WithCaption from "../../components/WithCaption";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Image from "next/image";
 import rehypePrism from "@mapbox/rehype-prism";
+import rehypeHighlight from "rehype-highlight";
 
 const components = { Image, WithCaption, a: ExternalLink, Todo };
 
@@ -17,10 +18,9 @@ export default function Post({
   source,
   data,
 }: {
-  source: string;
+  source: MDXRemoteSerializeResult;
   data: IPost;
 }) {
-  const content = hydrate(source, { components });
   return (
     <Layout>
       <PostHead data={data} />
@@ -32,7 +32,7 @@ export default function Post({
         <div className={`${utilStyles.lightText} ${utilStyles.margin1rem}`}>
           <DisplayDate dateString={data.date} />
         </div>
-        {content}
+        <MDXRemote {...source} components={components} />
         <div style={{ borderTop: "1px solid", paddingTop: "10px" }} />
         Thanks for reading! If you have questions or comments feel free to reach
         out to me on{" "}
@@ -70,9 +70,8 @@ export async function getStaticProps({ params }) {
   const postID = params.id as string;
   const data = await getPostData(postID);
 
-  const mdxSource = await renderToString(data.source, {
-    components,
-    mdxOptions: { rehypePlugins: [rehypePrism] },
+  const mdxSource = await serialize(data.source, {
+    mdxOptions: { rehypePlugins: [rehypeHighlight] },
   });
   return { props: { data, source: mdxSource } };
 }
