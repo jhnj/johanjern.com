@@ -1,4 +1,5 @@
 import "../styles/global.css";
+import "highlight.js/styles/stackoverflow-light.css";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { pageview } from "../lib/gtag";

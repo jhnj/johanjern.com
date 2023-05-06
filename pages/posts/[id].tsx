@@ -10,6 +10,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Image from "next/image";
 import rehypePrism from "@mapbox/rehype-prism";
+import rehypeHighlight from "rehype-highlight";
 
 const components = { Image, WithCaption, a: ExternalLink, Todo };
 
@@ -70,7 +71,7 @@ export async function getStaticProps({ params }) {
   const data = await getPostData(postID);
 
   const mdxSource = await serialize(data.source, {
-    mdxOptions: { rehypePlugins: [rehypePrism] },
+    mdxOptions: { rehypePlugins: [rehypeHighlight] },
   });
   return { props: { data, source: mdxSource } };
 }

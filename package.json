@@ -15,7 +15,8 @@
     "next-mdx-remote": "^4.4.1",
     "prettier": "^2.2.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "rehype-highlight": "^6.0.0"
   },
   "devDependencies": {
     "@types/gtag.js": "^0.0.12",
