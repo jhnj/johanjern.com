@@ -34,6 +34,7 @@ export default function Home({
           width="480"
           height="428"
           alt="me"
+          style={{ objectFit: "contain" }}
         />
 
         <MDXRemote {...intro} components={components} />

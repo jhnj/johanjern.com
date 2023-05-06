@@ -7,9 +7,16 @@ export default function WithCaption(props: {
 }) {
   return (
     <figure className={styles.m}>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          gap: "10px",
+        }}
+      >
         {React.Children.map(props.children, (child) => (
-          <div className={styles.imgPadding}>{child}</div>
+          <div>{child}</div>
         ))}
       </div>
       <figcaption>{props.caption}</figcaption>
